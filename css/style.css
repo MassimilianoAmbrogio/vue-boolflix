@@ -1,0 +1,56 @@
+/* GENERAL */ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+/* UTILITIES */
+.new-search button{
+    cursor: pointer;
+}
+
+/* LAYOUT */
+.container {
+    width: 100%;
+}
+
+/* NEW SEARCH */
+.new-search input {
+    width: 300px;
+    margin-right: 5px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.new-search input,
+.new-search button {
+    height: 30px;
+}
+
+/* BUTTON */
+
+.new-search button {
+    padding: 0 20px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 8px;
+}
+
+/* RESULTS LIST */
+.results-container {
+    margin: 40px 16px;
+    border-radius: 10px; 
+}
+
+.result {
+    padding: 10px;
+    list-style: none;
+}

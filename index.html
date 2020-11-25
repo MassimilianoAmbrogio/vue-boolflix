@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolflix</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Vue JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+</head>
+<body>
+    <!-- Inizio esercizio Bollflix -->
+    <div id="app" class="container">
+        <header class="app-header">
+             
+        </header>
+        <!-- Section search title -->
+        <section class="new-search">
+            <input type="text" 
+                   placeholder="Inserisci un titolo" 
+                   v-model="newSearch" 
+                   @keyup.enter="addTodo"
+            >
+            <button @click="addTodo">Cerca</button>
+        </section>
+
+        <!-- Section results -->
+        <section class="results-container">
+            <ul v-if="results.length > 0">
+                <li class="result" v-for="result in results">
+                    {{result}}
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- JS -->
+    <script src="./js/main.js"></script>
+
+    <!-- Fine esercizio Bollflix -->
+</body>
+</html>

@@ -17,21 +17,16 @@
 const app = new Vue({
     el: '#app',
     data: {
-        results: [
-            title,
-            original_title,
-            language,
-            vote_average
-        ],
+    films: [],
         newSearch: ''
     },
     created() {
         /**
          * AJAX
          */
-        axios.get('https://api.themoviedb.org/3/search/movie?api_key=8aa959f205e621817b2ca0044b7b0223', {
+        axios.get('https://api.themoviedb.org/3/search/movie', {
             params: {
-                query: 'harry+potter',
+                query: 'string',
                 api_key: '8aa959f205e621817b2ca0044b7b0223',
                 language: 'it-IT'
             }
@@ -47,12 +42,11 @@ const app = new Vue({
     },
     methods: {
         /**
-         * Add new todo item
+         * Add new Film
          */
-        addTodo() {
+        addFilm() {
             if (this.newSearch.trim() !== '') {
-                this.results.push(this.newSearch);
-                this.newSearch = '';
+                this.films.push(this.newSearch);
               }
         }
     }

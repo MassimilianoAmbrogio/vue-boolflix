@@ -36,7 +36,6 @@ body {
 }
 
 /* BUTTON */
-
 .new-search button {
     padding: 0 20px;
     border: 1px solid #ccc;
@@ -45,12 +44,11 @@ body {
 }
 
 /* RESULTS LIST */
-.results-container {
+.results-list {
     margin: 40px 16px;
     border-radius: 10px; 
 }
 
 .result {
     padding: 10px;
-    list-style: none;
 }

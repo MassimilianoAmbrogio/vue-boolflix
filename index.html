@@ -22,16 +22,19 @@
             <input type="text" 
                    placeholder="Inserisci un titolo" 
                    v-model="newSearch" 
-                   @keyup.enter="addTodo"
+                   @keyup.enter="addFilm"
             >
-            <button @click="addTodo">Cerca</button>
+            <button @click="addFilm">Cerca</button>
         </section>
 
-        <!-- Section results -->
-        <section class="results-container">
-            <ul v-if="results.length > 0">
-                <li class="result" v-for="result in results">
-                    {{result}}
+        <!-- Section films -->
+        <section class="films-container">
+            <ul v-if="films.length > 0">
+                <li class="film" v-for="film in films">
+                    <p class="title">{{film.title}}</p>
+                    <p class="original-title">{{film.original_title}}</p>
+                    <p class="language">{{film.language}}</p>
+                    <p class="language">{{film.vote_count}}</p>
                 </li>
             </ul>
         </section>

@@ -1,53 +1,90 @@
 /**
- * Milestone 1:
-   Creare un layout base con una searchbar 
-   (una input e un button) in cui possiamo scrivere 
-   completamente o parzialmente il nome di un film. 
-   Possiamo, cliccando il  bottone, cercare sull’API 
-   tutti i film che contengono ciò che ha scritto l’utente.
-   Vogliamo dopo la risposta dell’API visualizzare a schermo 
-   i seguenti valori per ogni film trovato: 
-   Titolo
-   Titolo Originale
-   Lingua
-   Voto
+ * Bollflix
  */
 
 // Parte Vue
 const app = new Vue({
     el: '#app',
     data: {
-    films: [],
-        newSearch: ''
-    },
-    created() {
-        /**
-         * AJAX
-         */
-        axios.get('https://api.themoviedb.org/3/search/movie', {
-            params: {
-                query: 'string',
-                api_key: '8aa959f205e621817b2ca0044b7b0223',
-                language: 'it-IT'
-            }
-        })
-        .then(result => {
-            console.log(result.data);
-
-            this.results = result.data.response;
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        coverImage: [],
+        query: '',
+        results: [],
+        availableFlags: ['it', 'en']
     },
     methods: {
         /**
-         * Add new Film
+         * Search result on API
          */
-        addFilm() {
-            if (this.newSearch.trim() !== '') {
-                this.films.push(this.newSearch);
-              }
-        }
+        search() {
+
+            this.results = [];
+
+            /**
+             * Movies
+             */
+            axios.get('https://api.themoviedb.org/3/search/movie', {
+                params: {
+                    api_key: '8aa959f205e621817b2ca0044b7b0223',
+                    poster_path: '/AkmUoSHkxW9txpzZ52gCcWweEkE.jpg',
+                    query: this.query,
+                    language: 'it-IT'
+                }
+            })
+            .then(response => {
+                const res = response.data.results;
+                // console.log(res);
+                // Mile 1
+                // this.results = res;
+
+                // Mile 2
+                this.results = this.results.concat(res);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+                
+            /**
+             * Serie tv
+             */
+            axios.get('https://api.themoviedb.org/3/search/tv', {
+                params: {
+                    api_key: '8aa959f205e621817b2ca0044b7b0223',
+                    poster_path: '/AkmUoSHkxW9txpzZ52gCcWweEkE.jpg',
+                    query: this.query,
+                    language: 'it-IT'
+                }
+            })
+            .then(response => {
+                const res = response.data.results;
+                    this.results = this.results.concat(res);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            },
+            /**
+             * Get Cover Img
+             */
+            getImg(coverImage) {
+                return coverImage = `https://image.tmdb.org/t/p/w342/AkmUoSHkxW9txpzZ52gCcWweEkE.jpg`;
+            },
+            /**
+             * Converte vote
+             */
+            getVote(vote) {
+                return Math.ceil(vote / 2);
+            },
+            /**
+             * Check Lang
+             */
+            isLangFlag(lang) {
+                return this.availableFlags.includes(lang);
+            },
+            /**
+             * Get flag image
+             */
+            getFlag(lang) {
+                return `./img/${lang}.png`;
+            }     
     }
 });

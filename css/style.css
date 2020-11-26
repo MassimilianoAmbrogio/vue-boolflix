@@ -7,48 +7,57 @@
 
 body {
     font-family: 'Lato', sans-serif;
+    color: #fff;
+    background: #000;
 }
 
 /* UTILITIES */
-.new-search button{
+.search::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+
+/* HEADER */
+.app-header {
+    padding: 5px 5px 5px;
+    background: #222;
+}
+
+.app-header img {
+    max-width: 114px;
+    margin-left: 30px;
+    margin-top: 8px;
     cursor: pointer;
 }
 
-/* LAYOUT */
-.container {
-    width: 100%;
+.search {
+    float: right;
+    margin-top: 12px;
+    margin-right: 10px;
 }
 
-/* NEW SEARCH */
-.new-search input {
+.search input {
     width: 300px;
-    margin-right: 5px;
-    padding: 0 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-left: 10px;
-    margin-top: 10px;
-}
-
-.new-search input,
-.new-search button {
-    height: 30px;
-}
-
-/* BUTTON */
-.new-search button {
+    height: 35px;
     padding: 0 20px;
-    border: 1px solid #ccc;
+    background: rgba(255,255,255, .75);
+    border: 0;
+    border-radius: 5px;
+}
+
+.search input:hover,
+.search input:focus {
     background: #fff;
-    border-radius: 8px;
+    transition: background .4s;
 }
 
-/* RESULTS LIST */
-.results-list {
-    margin: 40px 16px;
-    border-radius: 10px; 
+/* MOVIE */
+.movie {
+    margin: 20px 0;
 }
 
-.result {
-    padding: 10px;
+.flag {
+    width: 30px;
 }

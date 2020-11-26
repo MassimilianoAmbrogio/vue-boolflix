@@ -6,6 +6,8 @@
     <title>Boolflix</title>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'/>
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css">
     <!-- Vue JS -->
@@ -15,29 +17,70 @@
     <!-- Inizio esercizio Bollflix -->
     <div id="app" class="container">
         <header class="app-header">
-             
+            <img src="./img/logo.png" alt="Logo Netflix">
+            <!-- Section search film and serie -->
+            <div class="search">
+                <input type="text" 
+                       v-model="query" 
+                       placeholder="Cerca un film o una serie" 
+                       @keyup.enter="search">
+                <!-- <button @click="search">Search</button> -->
+            </div>
         </header>
-        <!-- Section search title -->
-        <section class="new-search">
-            <input type="text" 
-                   placeholder="Inserisci un titolo" 
-                   v-model="newSearch" 
-                   @keyup.enter="addFilm"
-            >
-            <button @click="addFilm">Cerca</button>
-        </section>
+        
+        <!-- Section movies -->
+        <div class="movies-container">
+            <div v-for="result in results" class="movie">
+                <ul>
+                    <li>
+                        <img
+                             class="img" 
+                             :src="getImg(result.coverImage)"
+                             :alt="result.coverImage"
+                        >
+                    </li> 
+                    <li>
+                        <span>Titolo:</span>
+                        <span v-if="result.title">
+                            {{result.title}}
+                        </span>
+                        
+                        <span v-if="result.name">
+                            {{result.name}}
+                        </span>
+                    </li>
+                    <li>
+                        <span>Titolo Originale:</span>
+                        <span v-if="result.original_title">
+                            {{result.original_title}}
+                        </span>
+                        
+                        <span v-if="result.original_name">
+                            {{result.original_name}}
+                        </span>
+                    </li>
+                    <li>
+                        <span>Voto:</span>
+                        <i v-for="n in getVote(result.vote_average)"
+                            class="fas fa-star"></i>
+                        <i v-for="n in 5 - getVote(result.vote_average)"
+                            class="far fa-star"></i>
+                    </li>
+                    <li>
+                        <span>Lingua:</span>
+                        <img v-if="isLangFlag(result.original_language)"
+                            class="flag"
+                            :src="getFlag(result.original_language)"
+                            :alt="result.original_language"
+                        > 
+                         <span v-else>
+                             {{result.original_language}}
+                         </span> 
+                    </li>
 
-        <!-- Section films -->
-        <section class="films-container">
-            <ul v-if="films.length > 0">
-                <li class="film" v-for="film in films">
-                    <p class="title">{{film.title}}</p>
-                    <p class="original-title">{{film.original_title}}</p>
-                    <p class="language">{{film.language}}</p>
-                    <p class="language">{{film.vote_count}}</p>
-                </li>
-            </ul>
-        </section>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <!-- Axios -->

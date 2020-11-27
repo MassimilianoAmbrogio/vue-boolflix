@@ -80,7 +80,7 @@ const app = new Vue({
             /**
              * Get film/tv poster
              */
-             getImg(poster) {
+            getImg(poster) {
                 return `https://image.tmdb.org/t/p/w342${poster}`;
             }
     }

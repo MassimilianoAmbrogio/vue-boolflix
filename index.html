@@ -32,7 +32,7 @@
         <div class="movies-container">
             <div v-for="result in results" class="movie">
                 <!-- Img movie and serie -->
-                <img v-if="result.poster_path"
+                <img v-if="result.poster_path" class="cover-img"
                      :src="getImg(result.poster_path)">
                 <img v-else src="https://www.altavod.com/assets/images/poster-placeholder.png">
                 <!-- List movie and serie (title, vote, language) -->
@@ -76,7 +76,6 @@
                         </span> 
                     </li>
                 </ul>
-                <h2 v-else>Film non trovato :(</h2>
             </div>
         </div>
     </div>

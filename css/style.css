@@ -34,7 +34,7 @@ body {
 .search {
     float: right;
     margin-top: 12px;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 .search input {
@@ -53,10 +53,49 @@ body {
 }
 
 /* MOVIE */
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px 10px;
+}
+
 .movie {
+    flex-basis: 200px;
+    margin: 10px 15px;
+    padding: 20px;
+    text-align: center;
+    background: #222;
+}
+
+.movie img {
+    width: 240px;
+}
+
+.movie li {
+    list-style: none;
+}
+
+.movie li > img {
+    width: 50px;
+}
+
+.movie .title {
     margin: 20px 0;
+    text-transform: uppercase;
+    font-size: 22px;
+}
+
+.movie .original-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: gray;
 }
 
 .flag {
     width: 30px;
+}
+
+.movie h2 {
+    background: #fff;
 }

@@ -16,9 +16,10 @@
 <body>
     <!-- Inizio esercizio Bollflix -->
     <div id="app" class="container">
+        <!-- Header logo, search -->
         <header class="app-header">
             <img src="./img/logo.png" alt="Logo Netflix">
-            <!-- Section search films and series -->
+            <!-- Search films and series -->
             <div class="search">
                 <input type="text" 
                        v-model="query" 
@@ -27,19 +28,17 @@
             </div>
         </header>
         
-        <!-- Section movies -->
+        <!-- Section movies and series -->
         <div class="movies-container">
             <div v-for="result in results" class="movie">
+                <!-- Img movie and serie -->
+                <img v-if="result.poster_path"
+                     :src="getImg(result.poster_path)">
+                <img v-else src="https://www.altavod.com/assets/images/poster-placeholder.png">
+                <!-- List movie and serie (title, vote, language) -->
                 <ul>
-                    <li>
-                        <img
-                             class="img" 
-                             :src="getImg(result.coverImage)"
-                             :alt="result.coverImage"
-                        >
-                    </li> 
-                    <li>
-                        <span>Titolo:</span>
+                    <li class="title">
+                        <!-- <span>Titolo:</span> -->
                         <span v-if="result.title">
                             {{result.title}}
                         </span>
@@ -48,8 +47,8 @@
                             {{result.name}}
                         </span>
                     </li>
-                    <li>
-                        <span>Titolo Originale:</span>
+                    <li class="original-title">
+                        <!-- <span>Titolo Originale:</span> -->
                         <span v-if="result.original_title">
                             {{result.original_title}}
                         </span>
@@ -58,26 +57,26 @@
                             {{result.original_name}}
                         </span>
                     </li>
-                    <li>
-                        <span>Voto:</span>
+                    <li class="vote">
+                        <!-- <span>Voto:</span> -->
                         <i v-for="n in getVote(result.vote_average)"
                             class="fas fa-star"></i>
                         <i v-for="n in 5 - getVote(result.vote_average)"
                             class="far fa-star"></i>
                     </li>
                     <li>
-                        <span>Lingua:</span>
+                        <!-- <span>Lingua:</span> -->
                         <img v-if="isLangFlag(result.original_language)"
                             class="flag"
                             :src="getFlag(result.original_language)"
                             :alt="result.original_language"
                         > 
-                         <span v-else>
-                             {{result.original_language}}
-                         </span> 
+                        <span v-else>
+                            {{result.original_language}}
+                        </span> 
                     </li>
-
                 </ul>
+                <h2 v-else>Film non trovato :(</h2>
             </div>
         </div>
     </div>

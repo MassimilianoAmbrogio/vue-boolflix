@@ -6,7 +6,6 @@
 const app = new Vue({
     el: '#app',
     data: {
-        coverImage: [],
         query: '',
         results: [],
         availableFlags: ['it', 'en']
@@ -25,7 +24,6 @@ const app = new Vue({
             axios.get('https://api.themoviedb.org/3/search/movie', {
                 params: {
                     api_key: '8aa959f205e621817b2ca0044b7b0223',
-                    poster_path: '/AkmUoSHkxW9txpzZ52gCcWweEkE.jpg',
                     query: this.query,
                     language: 'it-IT'
                 }
@@ -49,7 +47,6 @@ const app = new Vue({
             axios.get('https://api.themoviedb.org/3/search/tv', {
                 params: {
                     api_key: '8aa959f205e621817b2ca0044b7b0223',
-                    poster_path: '/AkmUoSHkxW9txpzZ52gCcWweEkE.jpg',
                     query: this.query,
                     language: 'it-IT'
                 }
@@ -61,12 +58,6 @@ const app = new Vue({
                 .catch(error => {
                     console.log(error);
                 });
-            },
-            /**
-             * Get Cover Img
-             */
-            getImg(coverImage) {
-                return coverImage = `https://image.tmdb.org/t/p/w342/AkmUoSHkxW9txpzZ52gCcWweEkE.jpg`;
             },
             /**
              * Converte vote
@@ -85,6 +76,12 @@ const app = new Vue({
              */
             getFlag(lang) {
                 return `./img/${lang}.png`;
-            }     
+            },
+            /**
+             * Get film/tv poster
+             */
+             getImg(poster) {
+                return `https://image.tmdb.org/t/p/w342${poster}`;
+            }
     }
 });
